@@ -7,6 +7,7 @@ from __future__ import print_function
 # Imports
 import numpy as np
 import tensorflow as tf
+import matplotlib.pyplot as matplot
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
@@ -93,24 +94,35 @@ def main(unused_argv):
     logging_hook = tf.train.LoggingTensorHook(
         tensors=tensors_to_log, every_n_iter=500)
     # Train the model
-    train_input_fn = tf.estimator.inputs.numpy_input_fn(
-        x={"x": train_data},
-        y=train_labels,
-        batch_size=100,
-        num_epochs=None,
-        shuffle=True)
-    mnist_classifier.train(
-        input_fn=train_input_fn,
-        steps=20000,
-        hooks=[logging_hook])
-    # Evaluate the model and print results
-    eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-        x={"x": eval_data},
-        y=eval_labels,
-        num_epochs=1,
-        shuffle=False)
-    eval_results = mnist_classifier.evaluate(input_fn=eval_input_fn)
-    print(eval_results)
+    accuracyEstimates = []
+    lossEstimates = []
+    for i in range(1,201,100):
+        print("current processing: " + str(i))
+        train_input_fn = tf.estimator.inputs.numpy_input_fn(
+            x={"x": train_data},
+            y=train_labels,
+            batch_size=100,
+            num_epochs=None,
+            shuffle=True)
+        mnist_classifier.train(
+            input_fn=train_input_fn,
+            steps=i,
+            hooks=[logging_hook])
+        # Evaluate the model and print results
+        eval_input_fn = tf.estimator.inputs.numpy_input_fn(
+            x={"x": eval_data},
+            y=eval_labels,
+            num_epochs=1,
+            shuffle=False)
+        eval_results = mnist_classifier.evaluate(input_fn=eval_input_fn)
+        accuracyEstimates.append(eval_results['accuracy'])
+        lossEstimates.append(eval_results['loss'])
+        print(eval_results)
+
+
+    numIterators = range(1,20000,100);
+    matplot.plot(accuracyEstimates)
+    matplot.plot(lossEstimates)
 
 
 if __name__ == "__main__":
