@@ -94,9 +94,12 @@ def main(unused_argv):
     logging_hook = tf.train.LoggingTensorHook(
         tensors=tensors_to_log, every_n_iter=500)
     # Train the model
-    accuracyEstimates = []
-    lossEstimates = []
-    for i in range(1,201,100):
+    trainAccuracyEstimates = []
+    trainLossEstimates = []
+
+    testAccuracyEstimates = []
+    testLossEstimates = []
+    for i in range(1,20000,150):
         print("current processing: " + str(i))
         train_input_fn = tf.estimator.inputs.numpy_input_fn(
             x={"x": train_data},
@@ -115,14 +118,16 @@ def main(unused_argv):
             num_epochs=1,
             shuffle=False)
         eval_results = mnist_classifier.evaluate(input_fn=eval_input_fn)
-        accuracyEstimates.append(eval_results['accuracy'])
-        lossEstimates.append(eval_results['loss'])
+        #testAccuracyEstimates.append(eval_results['accuracy'])
+        #testLossEstimates.append(eval_results['loss'])
         print(eval_results)
 
 
-    numIterators = range(1,20000,100);
-    matplot.plot(accuracyEstimates)
-    matplot.plot(lossEstimates)
+    #numIterators = range(1,20000,100);
+    #matplot.plot(testAccuracyEstimates)
+    #matplot.plot(testLossEstimates)
+
+    a=5
 
 
 if __name__ == "__main__":
