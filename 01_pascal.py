@@ -16,6 +16,7 @@ from eval import compute_map
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
+
 CLASS_NAMES = [
      'aeroplane',
      'bicycle',
@@ -38,8 +39,11 @@ CLASS_NAMES = [
      'train',
      'tvmonitor',
 ]
-
-
+'''
+CLASS_NAMES = [
+     'aeroplane'
+]
+'''
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
     #Siddhanj: TODO Might want to take a random 224x224 crop at train and center 224X224 crop at test time
@@ -129,6 +133,7 @@ def load_pascal(data_dir, split='train'):
     labels = np.ndarray(shape=(num_images, 20), dtype=np.int32)
     weights = np.ndarray(shape=(num_images, 20), dtype=np.int32)
     weights.fill(1)
+    labels.fill(0)
     i=0
     for eachClass in CLASS_NAMES:
         print(eachClass)
@@ -145,7 +150,8 @@ def load_pascal(data_dir, split='train'):
                     continue
                 if words[0] in imageLabelDict.keys():
                     labels[imageLabelDict[words[0]], labelNumber] = 1
-                    weights[imageLabelDict[words[0]], labelNumber] = np.int32(words[0])
+                    if words[1] == '0':
+                        weights[imageLabelDict[words[0]], labelNumber] = 0
                     continue
 
                 imageLabelDict[words[0]] = i
@@ -156,7 +162,8 @@ def load_pascal(data_dir, split='train'):
                 finalImageData = np.array(rawImage.getdata(),np.float32).reshape(rawImage.size[1], rawImage.size[0], 3)
                 images[i] = finalImageData
                 labels[i,labelNumber] =1
-                weights[i, labelNumber] = np.int32(words[0])
+                if words[1] == '0':
+                    weights[i, labelNumber] = 0
                 i=i+1
 
     return images,labels, weights
