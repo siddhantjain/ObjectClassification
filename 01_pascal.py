@@ -39,11 +39,14 @@ CLASS_NAMES = [
      'train',
      'tvmonitor',
 ]
+
+
 '''
 CLASS_NAMES = [
      'aeroplane'
 ]
 '''
+
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
     #Siddhanj: TODO Might want to take a random 224x224 crop at train and center 224X224 crop at test time
@@ -203,6 +206,7 @@ def main():
         model_fn=partial(cnn_model_fn,
                          num_classes=train_labels.shape[1]),
         model_dir="/tmp/pascal_model_scratch")
+
     tensors_to_log = {"loss": "loss"}
     logging_hook = tf.train.LoggingTensorHook(
         tensors=tensors_to_log, every_n_iter=10)
@@ -213,30 +217,41 @@ def main():
         batch_size=BATCH_SIZE,
         num_epochs=None,
         shuffle=True)
-    pascal_classifier.train(
-        input_fn=train_input_fn,
-        steps=NUM_ITERS,
-        hooks=[logging_hook])
-    # Evaluate the model and print results
-    eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-        x={"x": eval_data, "w": eval_weights},
-        y=eval_labels,
-        num_epochs=1,
-        shuffle=False)
-    pred = list(pascal_classifier.predict(input_fn=eval_input_fn))
-    pred = np.stack([p['probabilities'] for p in pred])
-    rand_AP = compute_map(
-        eval_labels, np.random.random(eval_labels.shape),
-        eval_weights, average=None)
-    print('Random AP: {} mAP'.format(np.mean(rand_AP)))
-    gt_AP = compute_map(
-        eval_labels, eval_labels, eval_weights, average=None)
-    print('GT AP: {} mAP'.format(np.mean(gt_AP)))
-    AP = compute_map(eval_labels, pred, eval_weights, average=None)
-    print('Obtained {} mAP'.format(np.mean(AP)))
-    print('per class:')
-    for cid, cname in enumerate(CLASS_NAMES):
-        print('{}: {}'.format(cname, _get_el(AP, cid)))
+    mAPEstimates = []
+    for NUM_ITERS in range(1,1000):
+        pascal_classifier.train(
+            input_fn=train_input_fn,
+            steps=NUM_ITERS,
+            hooks=[logging_hook])
+        # Evaluate the model and print results
+        eval_input_fn = tf.estimator.inputs.numpy_input_fn(
+            x={"x": eval_data, "w": eval_weights},
+            y=eval_labels,
+            num_epochs=1,
+            shuffle=False)
+        pred = list(pascal_classifier.predict(input_fn=eval_input_fn))
+        pred = np.stack([p['probabilities'] for p in pred])
+        rand_AP = compute_map(
+            eval_labels, np.random.random(eval_labels.shape),
+            eval_weights, average=None)
+        print('Random AP: {} mAP'.format(np.mean(rand_AP)))
+        gt_AP = compute_map(
+            eval_labels, eval_labels, eval_weights, average=None)
+        print('GT AP: {} mAP'.format(np.mean(gt_AP)))
+        AP = compute_map(eval_labels, pred, eval_weights, average=None)
+        print('Obtained {} mAP'.format(np.mean(AP)))
+        print('per class:')
+        for cid, cname in enumerate(CLASS_NAMES):
+            print('{}: {}'.format(cname, _get_el(AP, cid)))
+        mAPEstimates.append(np.mean(AP))
+
+
+    #taking a short cut for this question and instead of figuring out tensorboard, just writing mAP values to file,
+    # which I will scp and create a graph using Excel (takes much lesser time than figuring tensorboard right now
+
+    mapEstimatesFile = open('mapEstimates.txt', 'w')
+    for item in mAPEstimates:
+        mapEstimatesFile.write("%s\n" % item)
 
 
 if __name__ == "__main__":

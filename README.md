@@ -76,6 +76,32 @@ Next we need to write the model function for PASCAL. I provide an empty function
 
 With all this code in place, we should now be able to train the model. For now we will use the same training parameters as we used for MNIST. The other thing to figure out is the evaluation. A standard metric for multi-label evaluation is [mean average precision (mAP)](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html). I already provide the code for evaluation; just make sure your `model_fn` can return an `EstimatorSpec` for the predict mode (it should return the probability for each class).
 
+Random AP: 0.0727148157354 mAP
+GT AP: 1.0 mAP
+Obtained 0.140231488254 mAP
+per class:
+aeroplane: 0.401967182873
+bicycle: 0.0629552528267
+bird: 0.0988575803395
+boat: 0.108750371593
+bottle: 0.0619236747228
+bus: 0.0725046385992
+car: 0.290560099702
+cat: 0.141070810446
+chair: 0.119250912877
+cow: 0.0436064491459
+diningtable: 0.0536608839504
+dog: 0.153017609791
+horse: 0.179754374498
+motorbike: 0.126349390881
+person: 0.511612999497
+pottedplant: 0.0469096747756
+sheep: 0.0783217276329
+sofa: 0.0816671056456
+train: 0.0984211005215
+tvmonitor: 0.0734679247565
+
+
 #### Q 1.3: Same as before, show the training and accuracy (mAP) curves. Train for only 1000 iterations.
 
 
