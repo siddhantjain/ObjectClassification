@@ -50,37 +50,90 @@ CLASS_NAMES = [
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
     #Siddhanj: TODO Might want to take a random 224x224 crop at train and center 224X224 crop at test time
+    if mode == tf.estimator.ModeKeys.PREDICT:
+        features["x"] = tf.image.central_crop(features["x"])
+    else:
+        features["x"] = tf.image.extract_glimpse(features["x"], [224,224], [-1,[0,0]], centered=None, normalized=None, uniform_noise=None, name=None)
+
+
+    features_flipped = tf.image.random_flip_left_right(features["x"])
+    features["x"].append(features_flipped)
+
+
     input_layer = tf.reshape(features["x"], [-1, 256, 256, 3])
 
     # Convolutional Layer #1
     conv1 = tf.layers.conv2d(
         inputs=input_layer,
-        filters=32,
-        kernel_size=[5, 5],
-        padding="same",
+        filters=96,
+        strides = 4,
+        kernel_size=[11, 11],
+        kernel_initializer=tf.initializers.random_normal(0,0.01),
+        bias = tf.initializers.zeros(),
+        padding="valid",
         activation=tf.nn.relu)
 
     # Pooling Layer #1
-    pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
+    pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[3, 3], strides=2)
 
     # Convolutional Layer #2 and Pooling Layer #2
     conv2 = tf.layers.conv2d(
         inputs=pool1,
-        filters=64,
+        filters=256,
         kernel_size=[5, 5],
+        strides = 1,
+        kernel_initializer=tf.initializers.random_normal(0, 0.01),
+        bias=tf.initializers.zeros(),
         padding="same",
         activation=tf.nn.relu)
-    pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
+    pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[3, 3], strides=2)
 
-    # Dense Layer
-    pool2_flat = tf.reshape(pool2, [-1, 64 * 64 * 64])
-    dense = tf.layers.dense(inputs=pool2_flat, units=1024,
+    # Convolutional Layer #3,#4,#5 and Pooling Layer #3
+    conv3 = tf.layers.conv2d(
+        inputs=pool2,
+        filters=384,
+        kernel_size=[3, 3],
+        strides=1,
+        kernel_initializer=tf.initializers.random_normal(0, 0.01),
+        bias=tf.initializers.zeros(),
+        padding="same",
+        activation=tf.nn.relu)
+
+    conv4 = tf.layers.conv2d(
+        inputs=conv3,
+        filters=384,
+        kernel_size=[3, 3],
+        strides=1,
+        kernel_initializer=tf.initializers.random_normal(0, 0.01),
+        bias=tf.initializers.zeros(),
+        padding="same",
+        activation=None)
+
+    conv5 = tf.layers.conv2d(
+        inputs=conv4,
+        filters=256,
+        kernel_size=[3, 3],
+        strides=1,
+        kernel_initializer=tf.initializers.random_normal(0, 0.01),
+        bias=tf.initializers.zeros(),
+        padding="same",
+        activation=None)
+
+    pool3 = tf.layers.max_pooling2d(inputs=conv5, pool_size=[3, 3], strides=2)
+    #TODO: Change the 64*64*64 to the value appropriate for this layer
+    pool3_flat = tf.reshape(pool3, [-1, 64 * 64 * 64])
+
+    dense1 = tf.layers.dense(inputs=pool3_flat, units=4096,
                             activation=tf.nn.relu)
-    dropout = tf.layers.dropout(
-        inputs=dense, rate=0.4, training=mode == tf.estimator.ModeKeys.TRAIN)
+    dropout1 = tf.layers.dropout(
+        inputs=dense1, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
+    dense2 = tf.layers.dense(inputs=dropout1, units=4096,
+                             activation=tf.nn.relu)
+    dropout2 = tf.layers.dropout(
+        inputs=dense2, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
 
     # Logits Layer
-    logits = tf.layers.dense(inputs=dropout, units=num_classes)
+    logits = tf.layers.dense(inputs=dropout2, units=num_classes)
 
     predictions = {
         # Generate predictions (for PREDICT and EVAL mode)
@@ -94,13 +147,20 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
 
     # Calculate Loss (for both TRAIN and EVAL modes)
-    #onehot_labels = tf.one_hot(indices=tf.cast(labels, tf.int32), depth=10)
+
     loss = tf.identity(tf.losses.sigmoid_cross_entropy(
         multi_class_labels=labels, logits=logits), name='loss')
 
     # Configure the Training Op (for TRAIN mode)
     if mode == tf.estimator.ModeKeys.TRAIN:
-        optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
+
+        global_step = tf.Variable(0, trainable=False)
+        starter_learning_rate = 0.001
+        learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step,
+                                                   10000, 0.5, staircase=True)
+
+        optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum="0.9")
+
         train_op = optimizer.minimize(
             loss=loss,
             global_step=tf.train.get_global_step())
@@ -218,23 +278,19 @@ def main():
         num_epochs=None,
         shuffle=True)
     mAPEstimates = []
-    eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-        x={"x": eval_data, "w": eval_weights},
-        y=eval_labels,
-        num_epochs=1,
-        shuffle=False)
-
-    for NUM_ITERS in range(10):
-        print("performing the following iter" + str(NUM_ITERS))
+    for NUM_ITERS in range(100):
         pascal_classifier.train(
             input_fn=train_input_fn,
-            steps=100,
+            steps=10,
             hooks=[logging_hook])
         # Evaluate the model and print results
-
+        eval_input_fn = tf.estimator.inputs.numpy_input_fn(
+            x={"x": eval_data, "w": eval_weights},
+            y=eval_labels,
+            num_epochs=1,
+            shuffle=False)
         pred = list(pascal_classifier.predict(input_fn=eval_input_fn))
         pred = np.stack([p['probabilities'] for p in pred])
-        '''
         rand_AP = compute_map(
             eval_labels, np.random.random(eval_labels.shape),
             eval_weights, average=None)
@@ -242,15 +298,11 @@ def main():
         gt_AP = compute_map(
             eval_labels, eval_labels, eval_weights, average=None)
         print('GT AP: {} mAP'.format(np.mean(gt_AP)))
-        '''
-
         AP = compute_map(eval_labels, pred, eval_weights, average=None)
-        '''
         print('Obtained {} mAP'.format(np.mean(AP)))
         print('per class:')
         for cid, cname in enumerate(CLASS_NAMES):
             print('{}: {}'.format(cname, _get_el(AP, cid)))
-        '''
         mAPEstimates.append(np.mean(AP))
 
 

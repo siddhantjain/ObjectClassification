@@ -99,7 +99,7 @@ def main(unused_argv):
 
     testAccuracyEstimates = []
     testLossEstimates = []
-    for i in range(1,20000,150):
+    for i in range(200):
         print("current processing: " + str(i))
         train_input_fn = tf.estimator.inputs.numpy_input_fn(
             x={"x": train_data},
@@ -109,7 +109,7 @@ def main(unused_argv):
             shuffle=True)
         mnist_classifier.train(
             input_fn=train_input_fn,
-            steps=i,
+            steps=100,
             hooks=[logging_hook])
         # Evaluate the model and print results
         eval_input_fn = tf.estimator.inputs.numpy_input_fn(
