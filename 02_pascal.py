@@ -280,10 +280,10 @@ def main():
         num_epochs=None,
         shuffle=True)
     mAPEstimates = []
-    for NUM_ITERS in range(400):
+    for NUM_ITERS in range(100):
         pascal_classifier.train(
             input_fn=train_input_fn,
-            steps=100,
+            steps=400,
             hooks=[logging_hook])
         # Evaluate the model and print results
         eval_input_fn = tf.estimator.inputs.numpy_input_fn(
