@@ -65,84 +65,150 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
     input_layer = tf.reshape(features["x"], [-1, 224, 224, 3])
 
     # Convolutional Layer #1
-    conv1 = tf.layers.conv2d(
+    conv1_1 = tf.layers.conv2d(
         inputs=input_layer,
-        filters=96,
-        strides = 4,
-        kernel_size=[11, 11],
-        kernel_initializer=tf.initializers.random_normal(0,0.01),
-        bias_initializer = tf.initializers.zeros(),
-        padding="valid",
+        filters=64,
+        strides = 1,
+        kernel_size=[3, 3],
+        padding="same",
         activation=tf.nn.relu)
-
-    # Pooling Layer #1
-    pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[3, 3], strides=2)
 
     # Convolutional Layer #2 and Pooling Layer #2
-    conv2 = tf.layers.conv2d(
-        inputs=pool1,
-        filters=256,
-        kernel_size=[5, 5],
+    conv1_2 = tf.layers.conv2d(
+        inputs=conv1_1,
+        filters=64,
+        kernel_size=[3, 3],
         strides = 1,
-        kernel_initializer=tf.initializers.random_normal(0, 0.01),
-        bias_initializer=tf.initializers.zeros(),
         padding="same",
         activation=tf.nn.relu)
-    pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[3, 3], strides=2)
+
+    pool1 = tf.layers.max_pooling2d(inputs=conv1_2, pool_size=[2, 2], strides=2)
 
     # Convolutional Layer #3,#4,#5 and Pooling Layer #3
-    conv3 = tf.layers.conv2d(
-        inputs=pool2,
-        filters=384,
+    conv2_1 = tf.layers.conv2d(
+        inputs=pool1,
+        filters=128,
         kernel_size=[3, 3],
         strides=1,
-        kernel_initializer=tf.initializers.random_normal(0, 0.01),
-        bias_initializer=tf.initializers.zeros(),
         padding="same",
         activation=tf.nn.relu)
 
-    conv4 = tf.layers.conv2d(
-        inputs=conv3,
-        filters=384,
+    conv2_2 = tf.layers.conv2d(
+        inputs=conv2_1,
+        filters=128,
         kernel_size=[3, 3],
         strides=1,
-        kernel_initializer=tf.initializers.random_normal(0, 0.01),
-        bias_initializer=tf.initializers.zeros(),
         padding="same",
-        activation=None)
+        activation=tf.nn.relu)
 
-    conv5 = tf.layers.conv2d(
-        inputs=conv4,
+    pool2 = tf.layers.max_pooling2d(inputs=conv2_2, pool_size=[2, 2], strides=2)
+
+    conv3_1 = tf.layers.conv2d(
+        inputs=pool2,
         filters=256,
         kernel_size=[3, 3],
         strides=1,
-        kernel_initializer=tf.initializers.random_normal(0, 0.01),
-        bias_initializer=tf.initializers.zeros(),
         padding="same",
-        activation=None)
+        activation=tf.nn.relu)
 
-    pool3 = tf.layers.max_pooling2d(inputs=conv5, pool_size=[3, 3], strides=2)
+    conv3_2 = tf.layers.conv2d(
+        inputs=conv3_1,
+        filters=256,
+        kernel_size=[3, 3],
+        strides=1,
+        padding="same",
+        activation=tf.nn.relu)
 
-    pool3_flat = tf.reshape(pool3, [-1, 5 * 5 * 256])
+    conv3_3 = tf.layers.conv2d(
+        inputs=conv3_2,
+        filters=256,
+        kernel_size=[3, 3],
+        strides=1,
+        padding="same",
+        activation=tf.nn.relu)
 
-    dense1 = tf.layers.dense(inputs=pool3_flat, units=4096,
+    pool3 = tf.layers.max_pooling2d(inputs=conv3_3, pool_size=[2, 2], strides=2)
+
+    conv4_1 = tf.layers.conv2d(
+        inputs=pool3,
+        filters=512,
+        kernel_size=[3, 3],
+        strides=1,
+        padding="same",
+        activation=tf.nn.relu)
+
+    conv4_2 = tf.layers.conv2d(
+        inputs=conv4_1,
+        filters=512,
+        kernel_size=[3, 3],
+        strides=1,
+        padding="same",
+        activation=tf.nn.relu)
+
+    conv4_3 = tf.layers.conv2d(
+        inputs=conv4_2,
+        filters=512,
+        kernel_size=[3, 3],
+        strides=1,
+        padding="same",
+        activation=tf.nn.relu)
+
+    pool4 = tf.layers.max_pooling2d(inputs=conv4_3, pool_size=[2, 2], strides=2)
+
+    conv5_1 = tf.layers.conv2d(
+        inputs=pool4,
+        filters=512,
+        kernel_size=[3, 3],
+        strides=1,
+        padding="same",
+        activation=tf.nn.relu)
+
+    conv5_2 = tf.layers.conv2d(
+        inputs=conv5_1,
+        filters=512,
+        kernel_size=[3, 3],
+        strides=1,
+        padding="same",
+        activation=tf.nn.relu)
+
+    conv5_3 = tf.layers.conv2d(
+        inputs=conv5_2,
+        filters=512,
+        kernel_size=[3, 3],
+        strides=1,
+        padding="same",
+        activation=tf.nn.relu)
+
+    pool5 = tf.layers.max_pooling2d(inputs=conv5_3, pool_size=[2, 2], strides=2)
+
+
+
+    fc6 = tf.layers.dense(inputs=pool5, units=4096,
                             activation=tf.nn.relu)
-    dropout1 = tf.layers.dropout(
-        inputs=dense1, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
-    dense2 = tf.layers.dense(inputs=dropout1, units=4096,
-                             activation=tf.nn.relu)
-    dropout2 = tf.layers.dropout(
-        inputs=dense2, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
+
+    drop6 = tf.layers.dropout(
+        inputs=fc6, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
+
+
+    fc7 = tf.layers.dense(inputs=drop6, units=4096,
+                          activation=tf.nn.relu)
+
+    drop7 = tf.layers.dropout(
+        inputs=fc7, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
+
+
+
+
 
     # Logits Layer
-    logits = tf.layers.dense(inputs=dropout2, units=num_classes)
+    logits = tf.layers.dense(inputs=drop7, units=num_classes)
 
     predictions = {
         # Generate predictions (for PREDICT and EVAL mode)
         "classes": tf.argmax(input=logits, axis=1),
         # Add `softmax_tensor` to the graph. It is used for PREDICT and by the
         # `logging_hook`.
-        "probabilities": tf.nn.sigmoid(logits, name="softmax_tensor")
+        "probabilities": tf.nn.softmax(logits, name="softmax_tensor")
     }
 
     if mode == tf.estimator.ModeKeys.PREDICT:
@@ -150,14 +216,15 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
 
     # Calculate Loss (for both TRAIN and EVAL modes)
 
-    loss = tf.identity(tf.losses.sigmoid_cross_entropy(
+    loss = tf.identity(tf.nn.softmax_cross_entropy(
         multi_class_labels=labels, logits=logits), name='loss')
 
+    #TODO: CHECK loss formulation and also the prediction probabilities
     # Configure the Training Op (for TRAIN mode)
     if mode == tf.estimator.ModeKeys.TRAIN:
         summary_hook = tf.train.SummarySaverHook(
-            100,
-            output_dir="/tmp/pascal_model_alexnet",
+            400,
+            output_dir="/tmp/pascal_model_vgg",
             summary_op=tf.summary.merge_all())
 
         global_step = tf.Variable(0, trainable=False)

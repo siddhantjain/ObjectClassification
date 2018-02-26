@@ -156,7 +156,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
     # Configure the Training Op (for TRAIN mode)
     if mode == tf.estimator.ModeKeys.TRAIN:
         summary_hook = tf.train.SummarySaverHook(
-            100,
+            400,
             output_dir="/tmp/pascal_model_alexnet",
             summary_op=tf.summary.merge_all())
 
