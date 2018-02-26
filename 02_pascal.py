@@ -256,7 +256,7 @@ def _get_el(arr, i):
 
 def main():
     BATCH_SIZE = 100
-    NUM_ITERS = 10000
+    #NUM_ITERS = 10000
     args = parse_args()
     # Load training and eval data
     train_data, train_labels, train_weights = load_pascal(
@@ -280,7 +280,7 @@ def main():
         num_epochs=None,
         shuffle=True)
     mAPEstimates = []
-    for NUM_ITERS in range(10):
+    for NUM_ITERS in range(400):
         pascal_classifier.train(
             input_fn=train_input_fn,
             steps=100,
