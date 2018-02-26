@@ -155,6 +155,10 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
 
     # Configure the Training Op (for TRAIN mode)
     if mode == tf.estimator.ModeKeys.TRAIN:
+        summary_hook = tf.train.SummarySaverHook(
+            100,
+            output_dir="/tmp/pascal_model_alexnet",
+            summary_op=tf.summary.merge_all())
 
         global_step = tf.Variable(0, trainable=False)
         starter_learning_rate = 0.001
@@ -167,7 +171,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
             loss=loss,
             global_step=tf.train.get_global_step())
         return tf.estimator.EstimatorSpec(
-            mode=mode, loss=loss, train_op=train_op)
+            mode=mode, loss=loss, train_op=train_op, training_hooks=summary_hook)
 
     # Add evaluation metrics (for EVAL mode)
     eval_metric_ops = {
@@ -270,8 +274,10 @@ def main():
         model_dir="/tmp/pascal_model_alexnet")
 
     tensors_to_log = {"loss": "loss"}
+
+
     logging_hook = tf.train.LoggingTensorHook(
-        tensors=tensors_to_log, every_n_iter=10)
+        tensors=tensors_to_log, every_n_iter=100)
     # Train the model
     train_input_fn = tf.estimator.inputs.numpy_input_fn(
         x={"x": train_data, "w": train_weights},
