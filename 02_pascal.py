@@ -16,7 +16,6 @@ from eval import compute_map
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-'''
 CLASS_NAMES = [
      'aeroplane',
      'bicycle',
@@ -39,28 +38,31 @@ CLASS_NAMES = [
      'train',
      'tvmonitor',
 ]
+
+
 '''
-
-
 CLASS_NAMES = [
      'aeroplane'
 ]
-
+'''
 
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
-    #Siddhanj: TODO Might want to take a random 224x224 crop at train and center 224X224 crop at test time
     if mode == tf.estimator.ModeKeys.PREDICT:
-        features["x"] = tf.image.central_crop(features["x"])
+        features["x"] = tf.image.resize_image_with_crop_or_pad(features["x"],224,224)
     else:
-        features["x"] = tf.image.extract_glimpse(features["x"], [224,224], [-1,[0,0]], centered=None, normalized=None, uniform_noise=None, name=None)
+        augmentedData = tf.map_fn(lambda img: tf.image.random_flip_left_right(img), features["x"])
+        augmentedData = tf.map_fn(lambda img: tf.random_crop(img, [224, 224, 3]), augmentedData)
+        features["x"] = augmentedData
 
 
-    features_flipped = tf.image.random_flip_left_right(features["x"])
-    features["x"].append(features_flipped)
 
 
-    input_layer = tf.reshape(features["x"], [-1, 256, 256, 3])
+   # features_flipped = tf.image.random_flip_left_right(features["x"])
+   # features["x"].append(features_flipped)
+
+
+    input_layer = tf.reshape(features["x"], [-1, 224, 224, 3])
 
     # Convolutional Layer #1
     conv1 = tf.layers.conv2d(
@@ -69,7 +71,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         strides = 4,
         kernel_size=[11, 11],
         kernel_initializer=tf.initializers.random_normal(0,0.01),
-        bias = tf.initializers.zeros(),
+        bias_initializer = tf.initializers.zeros(),
         padding="valid",
         activation=tf.nn.relu)
 
@@ -83,7 +85,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         kernel_size=[5, 5],
         strides = 1,
         kernel_initializer=tf.initializers.random_normal(0, 0.01),
-        bias=tf.initializers.zeros(),
+        bias_initializer=tf.initializers.zeros(),
         padding="same",
         activation=tf.nn.relu)
     pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[3, 3], strides=2)
@@ -95,7 +97,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         kernel_size=[3, 3],
         strides=1,
         kernel_initializer=tf.initializers.random_normal(0, 0.01),
-        bias=tf.initializers.zeros(),
+        bias_initializer=tf.initializers.zeros(),
         padding="same",
         activation=tf.nn.relu)
 
@@ -105,7 +107,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         kernel_size=[3, 3],
         strides=1,
         kernel_initializer=tf.initializers.random_normal(0, 0.01),
-        bias=tf.initializers.zeros(),
+        bias_initializer=tf.initializers.zeros(),
         padding="same",
         activation=None)
 
@@ -115,13 +117,13 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         kernel_size=[3, 3],
         strides=1,
         kernel_initializer=tf.initializers.random_normal(0, 0.01),
-        bias=tf.initializers.zeros(),
+        bias_initializer=tf.initializers.zeros(),
         padding="same",
         activation=None)
 
     pool3 = tf.layers.max_pooling2d(inputs=conv5, pool_size=[3, 3], strides=2)
-    #TODO: Change the 64*64*64 to the value appropriate for this layer
-    pool3_flat = tf.reshape(pool3, [-1, 64 * 64 * 64])
+
+    pool3_flat = tf.reshape(pool3, [-1, 5 * 5 * 256])
 
     dense1 = tf.layers.dense(inputs=pool3_flat, units=4096,
                             activation=tf.nn.relu)
@@ -156,10 +158,10 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
 
         global_step = tf.Variable(0, trainable=False)
         starter_learning_rate = 0.001
-        learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step,
+        learning_rate = tf.train.exponential_decay(starter_learning_rate, tf.train.get_global_step(),
                                                    10000, 0.5, staircase=True)
 
-        optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum="0.9")
+        optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=0.9)
 
         train_op = optimizer.minimize(
             loss=loss,
@@ -278,10 +280,10 @@ def main():
         num_epochs=None,
         shuffle=True)
     mAPEstimates = []
-    for NUM_ITERS in range(100):
+    for NUM_ITERS in range(10):
         pascal_classifier.train(
             input_fn=train_input_fn,
-            steps=10,
+            steps=100,
             hooks=[logging_hook])
         # Evaluate the model and print results
         eval_input_fn = tf.estimator.inputs.numpy_input_fn(
