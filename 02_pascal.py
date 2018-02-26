@@ -267,7 +267,7 @@ def main():
     pascal_classifier = tf.estimator.Estimator(
         model_fn=partial(cnn_model_fn,
                          num_classes=train_labels.shape[1]),
-        model_dir="/tmp/pascal_model_scratch")
+        model_dir="/tmp/pascal_model_alexnet")
 
     tensors_to_log = {"loss": "loss"}
     logging_hook = tf.train.LoggingTensorHook(
