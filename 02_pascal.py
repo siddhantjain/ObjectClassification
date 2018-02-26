@@ -259,7 +259,7 @@ def _get_el(arr, i):
 
 
 def main():
-    BATCH_SIZE = 100
+    BATCH_SIZE = 10
     #NUM_ITERS = 10000
     args = parse_args()
     # Load training and eval data

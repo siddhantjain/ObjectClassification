@@ -52,8 +52,8 @@
       <file leaf-file-name="02_pascal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/02_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="158" column="13" lean-forward="false" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="13" />
+            <state relative-caret-position="88">
+              <caret line="261" column="19" lean-forward="false" selection-start-line="261" selection-start-column="19" selection-end-line="261" selection-end-column="19" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -97,8 +97,8 @@
       <file leaf-file-name="03_pascal.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/03_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="221" column="71" lean-forward="false" selection-start-line="221" selection-start-column="71" selection-end-line="221" selection-end-column="71" />
+            <state relative-caret-position="-1243">
+              <caret line="197" column="0" lean-forward="true" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -396,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519655445488</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="reducing alexnet summarisation further to hope for an improvement in speed&#10;Also implementing VGG">
+      <created>1519682847423</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1519682847423</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -434,7 +441,8 @@
     <MESSAGE value="Finalising one draft for AlexNet on Pascal" />
     <MESSAGE value="changing logging folder for alexnet pascal" />
     <MESSAGE value="Fixing a bug | Adding file for task 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing a bug | Adding file for task 3" />
+    <MESSAGE value="reducing alexnet summarisation further to hope for an improvement in speed&#10;Also implementing VGG" />
+    <option name="LAST_COMMIT_MESSAGE" value="reducing alexnet summarisation further to hope for an improvement in speed&#10;Also implementing VGG" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -609,8 +617,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/03_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="221" column="71" lean-forward="false" selection-start-line="221" selection-start-column="71" selection-end-line="221" selection-end-column="71" />
+        <state relative-caret-position="-1243">
+          <caret line="197" column="0" lean-forward="true" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -619,8 +627,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/02_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="158" column="13" lean-forward="false" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="13" />
+        <state relative-caret-position="88">
+          <caret line="261" column="19" lean-forward="false" selection-start-line="261" selection-start-column="19" selection-end-line="261" selection-end-column="19" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>

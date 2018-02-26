@@ -197,9 +197,6 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         inputs=fc7, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
 
 
-
-
-
     # Logits Layer
     logits = tf.layers.dense(inputs=drop7, units=num_classes)
 
