@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a70f881-3ad4-4e79-96f9-6be71618a37f" name="Default" comment="">
+    <list default="true" id="9a70f881-3ad4-4e79-96f9-6be71618a37f" name="Default" comment="reducing alexnet summarisation further to hope for an improvement in speed&#10;Also implementing VGG">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/02_pascal.py" afterPath="$PROJECT_DIR$/02_pascal.py" />
       <change beforePath="$PROJECT_DIR$/03_pascal.py" afterPath="$PROJECT_DIR$/03_pascal.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="02_pascal.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="02_pascal.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/02_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="261" column="19" lean-forward="false" selection-start-line="261" selection-start-column="19" selection-end-line="261" selection-end-column="19" />
+            <state relative-caret-position="-1721">
+              <caret line="157" column="15" lean-forward="false" selection-start-line="157" selection-start-column="8" selection-end-line="157" selection-end-column="15" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -94,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="03_pascal.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="03_pascal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/03_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1243">
-              <caret line="197" column="0" lean-forward="true" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -134,9 +133,10 @@
       <find>momen</find>
       <find>logging_hook</find>
       <find>estimatorSpec</find>
-      <find>summary</find>
-      <find>initi</find>
       <find>pool3</find>
+      <find>softmax_cros</find>
+      <find>initi</find>
+      <find>summary</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -153,8 +153,8 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/00_mnist.py" />
         <option value="$PROJECT_DIR$/01_pascal.py" />
-        <option value="$PROJECT_DIR$/03_pascal.py" />
         <option value="$PROJECT_DIR$/02_pascal.py" />
+        <option value="$PROJECT_DIR$/03_pascal.py" />
       </list>
     </option>
   </component>
@@ -230,7 +230,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.02_pascal">
+  <component name="RunManager" selected="Python.03_pascal">
     <configuration name="00_mnist" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -285,16 +285,36 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list size="3">
+    <configuration name="03_pascal" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="hw1" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/03_pascal.py" />
+      <option name="PARAMETERS" value="&quot;data/VOCdevkit/VOC2007&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.00_mnist" />
       <item index="1" class="java.lang.String" itemvalue="Python.01_pascal" />
       <item index="2" class="java.lang.String" itemvalue="Python.02_pascal" />
+      <item index="3" class="java.lang.String" itemvalue="Python.03_pascal" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.02_pascal" />
-        <item index="1" class="java.lang.String" itemvalue="Python.01_pascal" />
-        <item index="2" class="java.lang.String" itemvalue="Python.00_mnist" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.03_pascal" />
+        <item index="1" class="java.lang.String" itemvalue="Python.02_pascal" />
+        <item index="2" class="java.lang.String" itemvalue="Python.01_pascal" />
+        <item index="3" class="java.lang.String" itemvalue="Python.00_mnist" />
       </list>
     </recent_temporary>
   </component>
@@ -403,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519682847423</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="reducing alexnet summarisation further to hope for an improvement in speed&#10;Also implementing VGG">
+      <created>1519684601946</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1519684601946</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -462,8 +489,13 @@
           <line>164</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/03_pascal.py</url>
+          <line>183</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="30" />
+      <option name="time" value="31" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -615,20 +647,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/03_pascal.py">
+    <entry file="file://$PROJECT_DIR$/02_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1243">
-          <caret line="197" column="0" lean-forward="true" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+        <state relative-caret-position="-1721">
+          <caret line="157" column="15" lean-forward="false" selection-start-line="157" selection-start-column="8" selection-end-line="157" selection-end-column="15" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/02_pascal.py">
+    <entry file="file://$PROJECT_DIR$/03_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="261" column="19" lean-forward="false" selection-start-line="261" selection-start-column="19" selection-end-line="261" selection-end-column="19" />
+        <state relative-caret-position="105">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>

@@ -16,6 +16,7 @@ from eval import compute_map
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
+
 CLASS_NAMES = [
      'aeroplane',
      'bicycle',
@@ -180,10 +181,9 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         activation=tf.nn.relu)
 
     pool5 = tf.layers.max_pooling2d(inputs=conv5_3, pool_size=[2, 2], strides=2)
+    pool5_flat = tf.reshape(pool5, [-1, 7 * 7 * 512])
 
-
-
-    fc6 = tf.layers.dense(inputs=pool5, units=4096,
+    fc6 = tf.layers.dense(inputs=pool5_flat, units=4096,
                             activation=tf.nn.relu)
 
     drop6 = tf.layers.dropout(
@@ -205,7 +205,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         "classes": tf.argmax(input=logits, axis=1),
         # Add `softmax_tensor` to the graph. It is used for PREDICT and by the
         # `logging_hook`.
-        "probabilities": tf.nn.softmax(logits, name="softmax_tensor")
+        "probabilities": tf.nn.sigmoid(logits, name="softmax_tensor")
     }
 
     if mode == tf.estimator.ModeKeys.PREDICT:
@@ -213,7 +213,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
 
     # Calculate Loss (for both TRAIN and EVAL modes)
 
-    loss = tf.identity(tf.nn.softmax_cross_entropy(
+    loss = tf.reduce_mean(tf.losses.sigmoid_cross_entropy(
         multi_class_labels=labels, logits=logits), name='loss')
 
     #TODO: CHECK loss formulation and also the prediction probabilities
@@ -235,7 +235,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
             loss=loss,
             global_step=tf.train.get_global_step())
         return tf.estimator.EstimatorSpec(
-            mode=mode, loss=loss, train_op=train_op, training_hooks=summary_hook)
+            mode=mode, loss=loss, train_op=train_op, training_hooks=[summary_hook])
 
     # Add evaluation metrics (for EVAL mode)
     eval_metric_ops = {
@@ -323,7 +323,7 @@ def _get_el(arr, i):
 
 
 def main():
-    BATCH_SIZE = 100
+    BATCH_SIZE = 10
     #NUM_ITERS = 10000
     args = parse_args()
     # Load training and eval data
