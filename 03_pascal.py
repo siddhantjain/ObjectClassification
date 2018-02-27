@@ -231,7 +231,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
     if mode == tf.estimator.ModeKeys.TRAIN:
         summary_hook = tf.train.SummarySaverHook(
             400,
-            output_dir="/tmp/pascal_model_vgg",
+            output_dir="/tmp/pascal_model_vgg_no_finetune",
             summary_op=tf.summary.merge_all())
 
         global_step = tf.Variable(0, trainable=False)

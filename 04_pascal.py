@@ -383,7 +383,7 @@ def main():
 
     loadWeightHook = PreTrainedHook()
     logging_hook = tf.train.LoggingTensorHook(
-        tensors=tensors_to_log, every_n_iter=100)
+        tensors=tensors_to_log, every_n_iter=400)
     # Train the model
     train_input_fn = tf.estimator.inputs.numpy_input_fn(
         x={"x": train_data, "w": train_weights},
@@ -392,12 +392,18 @@ def main():
         num_epochs=None,
         shuffle=True)
     mAPEstimates = []
-    for NUM_ITERS in range(10):
+    for i in range(10):
 
-        pascal_classifier.train(
-            input_fn=train_input_fn,
-            steps=400,
-            hooks=[logging_hook,loadWeightHook])
+        if i==0:
+            pascal_classifier.train(
+                input_fn=train_input_fn,
+                steps=400,
+                hooks=[logging_hook,loadWeightHook])
+        else:
+            pascal_classifier.train(
+                input_fn=train_input_fn,
+                steps=400,
+                hooks=[logging_hook])
 
         # Evaluate the model and print results
         eval_input_fn = tf.estimator.inputs.numpy_input_fn(
