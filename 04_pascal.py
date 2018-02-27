@@ -16,7 +16,7 @@ from eval import compute_map
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-
+'''
 CLASS_NAMES = [
      'aeroplane',
      'bicycle',
@@ -39,13 +39,13 @@ CLASS_NAMES = [
      'train',
      'tvmonitor',
 ]
-
-
 '''
+
+
 CLASS_NAMES = [
      'aeroplane'
 ]
-'''
+
 
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
@@ -55,12 +55,6 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         augmentedData = tf.map_fn(lambda img: tf.image.random_flip_left_right(img), features["x"])
         augmentedData = tf.map_fn(lambda img: tf.random_crop(img, [224, 224, 3]), augmentedData)
         features["x"] = augmentedData
-
-
-
-
-   # features_flipped = tf.image.random_flip_left_right(features["x"])
-   # features["x"].append(features_flipped)
 
 
     input_layer = tf.reshape(features["x"], [-1, 224, 224, 3])
@@ -191,7 +185,6 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         padding="valid",
         activation=tf.nn.relu)
 
-
     drop6 = tf.layers.dropout(
         inputs=fc6, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
 
@@ -235,9 +228,9 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
             summary_op=tf.summary.merge_all())
 
         global_step = tf.Variable(0, trainable=False)
-        starter_learning_rate = 0.01
+        starter_learning_rate = 0.001
         learning_rate = tf.train.exponential_decay(starter_learning_rate, tf.train.get_global_step(),
-                                                   10000, 0.5, staircase=True)
+                                                   1000, 0.5, staircase=True)
 
         optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=0.9)
 
@@ -332,6 +325,45 @@ def _get_el(arr, i):
         return arr
 
 
+#['conv2d_1/bias:0' shape=(64,) dtype=float32_ref>, <tf.Variable 'conv2d_2/kernel:0' shape=(3, 3, 64, 128) dtype=float32_ref>, <tf.Variable 'conv2d_2/bias:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'conv2d_3/kernel:0' shape=(3, 3, 128, 128) dtype=float32_ref>, <tf.Variable 'conv2d_3/bias:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'conv2d_4/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'conv2d_4/bias:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'conv2d_5/kernel:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'conv2d_5/bias:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'conv2d_6/kernel:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'conv2d_6/bias:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'conv2d_7/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>, <tf.Variable 'conv2d_7/bias:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'conv2d_8/kernel:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'conv2d_8/bias:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'conv2d_9/kernel:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'conv2d_9/bias:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'conv2d_10/kernel:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'conv2d_10/bias:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'conv2d_11/kernel:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'conv2d_11/bias:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'conv2d_12/kernel:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'conv2d_12/bias:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'dense/kernel:0' shape=(25088, 4096) dtype=float32_ref>, <tf.Variable 'dense/bias:0' shape=(4096,) dtype=float32_ref>, <tf.Variable 'dense_1/kernel:0' shape=(4096, 4096) dtype=float32_ref>, <tf.Variable 'dense_1/bias:0' shape=(4096,) dtype=float32_ref>, <tf.Variable 'dense_2/kernel:0' shape=(4096, 20) dtype=float32_ref>, <tf.Variable 'dense_2/bias:0' shape=(20,) dtype=float32_ref>]
+
+
+weights_dict = { 'vgg_16/conv1/conv1_1/biases': 'conv2d/bias',
+            'vgg_16/conv1/conv1_1/weights': 'conv2d/kernel',
+            'vgg_16/conv1/conv1_2/biases': 'conv2d_1/bias',
+            'vgg_16/conv1/conv1_2/weights': 'conv2d_1/kernel',
+            'vgg_16/conv2/conv2_1/biases': 'conv2d_2/bias',
+            'vgg_16/conv2/conv2_1/weights': 'conv2d_2/kernel',
+            'vgg_16/conv2/conv2_2/biases': 'conv2d_3/bias',
+            'vgg_16/conv2/conv2_2/weights': 'conv2d_3/kernel',
+            'vgg_16/conv3/conv3_1/biases': 'conv2d_4/bias',
+            'vgg_16/conv3/conv3_1/weights': 'conv2d_4/kernel',
+            'vgg_16/conv3/conv3_2/biases': 'conv2d_5/bias',
+            'vgg_16/conv3/conv3_2/weights': 'conv2d_5/kernel',
+            'vgg_16/conv3/conv3_3/biases': 'conv2d_6/bias',
+            'vgg_16/conv3/conv3_3/weights': 'conv2d_6/kernel',
+            'vgg_16/conv4/conv4_1/biases': 'conv2d_7/bias',
+            'vgg_16/conv4/conv4_1/weights': 'conv2d_7/kernel',
+            'vgg_16/conv4/conv4_2/biases': 'conv2d_8/bias',
+            'vgg_16/conv4/conv4_2/weights': 'conv2d_8/kernel',
+            'vgg_16/conv4/conv4_3/biases': 'conv2d_9/bias',
+            'vgg_16/conv4/conv4_3/weights': 'conv2d_9/kernel',
+            'vgg_16/conv5/conv5_1/biases': 'conv2d_10/bias',
+            'vgg_16/conv5/conv5_1/weights': 'conv2d_10/kernel',
+            'vgg_16/conv5/conv5_2/biases': 'conv2d_11/bias',
+            'vgg_16/conv5/conv5_2/weights': 'conv2d_11/kernel',
+            'vgg_16/conv5/conv5_3/biases': 'conv2d_12/bias',
+            'vgg_16/conv5/conv5_3/weights': 'conv2d_12/kernel',
+            'vgg_16/fc6/biases': 'conv2d_13/bias',
+            'vgg_16/fc6/weights': 'conv2d_13/kernel',
+            'vgg_16/fc7/biases': 'conv2d_14/bias',
+            'vgg_16/fc7/weights': 'conv2d_14/kernel',}
+
+class PreTrainedHook(tf.train.SessionRunHook):
+    def begin(self):
+        print(tf.trainable_variables())
+        tf.contrib.framework.init_from_checkpoint('vgg_16.ckpt',weights_dict)
+
 def main():
     BATCH_SIZE = 10
     #NUM_ITERS = 10000
@@ -349,7 +381,7 @@ def main():
 
     tensors_to_log = {"loss": "loss"}
 
-
+    loadWeightHook = PreTrainedHook()
     logging_hook = tf.train.LoggingTensorHook(
         tensors=tensors_to_log, every_n_iter=100)
     # Train the model
@@ -360,11 +392,13 @@ def main():
         num_epochs=None,
         shuffle=True)
     mAPEstimates = []
-    for NUM_ITERS in range(100):
+    for NUM_ITERS in range(10):
+
         pascal_classifier.train(
             input_fn=train_input_fn,
             steps=400,
-            hooks=[logging_hook])
+            hooks=[logging_hook,loadWeightHook])
+
         # Evaluate the model and print results
         eval_input_fn = tf.estimator.inputs.numpy_input_fn(
             x={"x": eval_data, "w": eval_weights},
