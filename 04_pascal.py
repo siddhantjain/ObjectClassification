@@ -222,11 +222,13 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
     #TODO: CHECK loss formulation and also the prediction probabilities
     # Configure the Training Op (for TRAIN mode)
     if mode == tf.estimator.ModeKeys.TRAIN:
+        '''
         summary_hook = tf.train.SummarySaverHook(
             400,
             output_dir="/tmp/pascal_model_vgg",
             summary_op=tf.summary.merge_all())
-
+        '''
+        
         global_step = tf.Variable(0, trainable=False)
         starter_learning_rate = 0.001
         learning_rate = tf.train.exponential_decay(starter_learning_rate, tf.train.get_global_step(),
@@ -377,7 +379,7 @@ def main():
     pascal_classifier = tf.estimator.Estimator(
         model_fn=partial(cnn_model_fn,
                          num_classes=train_labels.shape[1]),
-        model_dir="/tmp/pascal_model_alexnet_finetuning")
+        model_dir="/tmp/pascal_model_finetuning")
 
     tensors_to_log = {"loss": "loss"}
 

@@ -229,10 +229,12 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
     #TODO: CHECK loss formulation and also the prediction probabilities
     # Configure the Training Op (for TRAIN mode)
     if mode == tf.estimator.ModeKeys.TRAIN:
+        '''
         summary_hook = tf.train.SummarySaverHook(
             400,
-            output_dir="/tmp/pascal_model_vgg_no_finetune",
+            output_dir="/tmp/pascal_model_vgg",
             summary_op=tf.summary.merge_all())
+        '''
 
         global_step = tf.Variable(0, trainable=False)
         starter_learning_rate = 0.01
@@ -244,8 +246,20 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         train_op = optimizer.minimize(
             loss=loss,
             global_step=tf.train.get_global_step())
+
+        #Tensorboard logging
+        tf.summary.scalar(name="learning_rate", tensor=learning_rate)
+        tf.summary.image(name="training_images", tensor=input_layer, max_outputs=10)
+
+        grad_list = optimizer.compute_gradients(loss)
+
+        for index, grad in enumerate(grad_list):
+            tf.summary.histogram("{}-grad".format(grad_list[index][1].name), grad_list[index])
+
         return tf.estimator.EstimatorSpec(
             mode=mode, loss=loss, train_op=train_op, training_hooks=[summary_hook])
+
+
 
     # Add evaluation metrics (for EVAL mode)
     eval_metric_ops = {
@@ -345,7 +359,7 @@ def main():
     pascal_classifier = tf.estimator.Estimator(
         model_fn=partial(cnn_model_fn,
                          num_classes=train_labels.shape[1]),
-        model_dir="/tmp/pascal_model_alexnet")
+        model_dir="/tmp/pascal_model_vgg")
 
     tensors_to_log = {"loss": "loss"}
 
