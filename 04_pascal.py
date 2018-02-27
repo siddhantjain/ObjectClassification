@@ -240,7 +240,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
             loss=loss,
             global_step=tf.train.get_global_step())
         return tf.estimator.EstimatorSpec(
-            mode=mode, loss=loss, train_op=train_op, training_hooks=[summary_hook])
+            mode=mode, loss=loss, train_op=train_op)
 
     # Add evaluation metrics (for EVAL mode)
     eval_metric_ops = {

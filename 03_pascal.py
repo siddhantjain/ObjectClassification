@@ -257,7 +257,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
             tf.summary.histogram("{}-grad".format(grad_list[index][1].name), grad_list[index])
 
         return tf.estimator.EstimatorSpec(
-            mode=mode, loss=loss, train_op=train_op, training_hooks=[summary_hook])
+            mode=mode, loss=loss, train_op=train_op)
 
 
 
