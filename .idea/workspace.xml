@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a70f881-3ad4-4e79-96f9-6be71618a37f" name="Default" comment="Making changes to VGG implementation">
-      <change beforePath="" afterPath="$PROJECT_DIR$/04_pascal.py" />
+    <list default="true" id="9a70f881-3ad4-4e79-96f9-6be71618a37f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/03_pascal.py" afterPath="$PROJECT_DIR$/03_pascal.py" />
+      <change beforePath="$PROJECT_DIR$/04_pascal.py" afterPath="$PROJECT_DIR$/04_pascal.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -109,8 +108,8 @@
       <file leaf-file-name="04_pascal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/04_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-40">
-              <caret line="352" column="8" lean-forward="true" selection-start-line="352" selection-start-column="8" selection-end-line="352" selection-end-column="8" />
+            <state relative-caret-position="151">
+              <caret line="379" column="55" lean-forward="false" selection-start-line="379" selection-start-column="55" selection-end-line="379" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -177,8 +176,8 @@
         <option value="$PROJECT_DIR$/02_pascal.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/03_pascal.py" />
-        <option value="$PROJECT_DIR$/04_pascal.py" />
         <option value="$PROJECT_DIR$/01_pascal.py" />
+        <option value="$PROJECT_DIR$/04_pascal.py" />
       </list>
     </option>
   </component>
@@ -494,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519687452242</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Making changes to VGG implementation">
+      <created>1519700116534</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1519700116534</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -742,8 +748,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/04_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="352" column="8" lean-forward="true" selection-start-line="352" selection-start-column="8" selection-end-line="352" selection-end-column="8" />
+        <state relative-caret-position="151">
+          <caret line="379" column="55" lean-forward="false" selection-start-line="379" selection-start-column="55" selection-end-line="379" selection-end-column="55" />
           <folding />
         </state>
       </provider>

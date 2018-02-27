@@ -377,7 +377,7 @@ def main():
     pascal_classifier = tf.estimator.Estimator(
         model_fn=partial(cnn_model_fn,
                          num_classes=train_labels.shape[1]),
-        model_dir="/tmp/pascal_model_alexnet")
+        model_dir="/tmp/pascal_model_alexnet_finetuning")
 
     tensors_to_log = {"loss": "loss"}
 
