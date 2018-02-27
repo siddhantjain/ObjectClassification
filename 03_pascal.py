@@ -206,9 +206,9 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
     drop7 = tf.layers.dropout(
         inputs=fc7, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
 
-
+    drop7_flatten = tf.reshape(drop7, [-1, 1 * 1 * 20])
     # Logits Layer
-    logits = tf.layers.dense(inputs=drop7, units=num_classes)
+    logits = tf.layers.dense(inputs=drop7_flatten, units=num_classes)
 
     predictions = {
         # Generate predictions (for PREDICT and EVAL mode)
