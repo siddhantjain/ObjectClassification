@@ -107,6 +107,8 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         train_op = optimizer.minimize(
             loss=loss,
             global_step=tf.train.get_global_step())
+
+
         return tf.estimator.EstimatorSpec(
             mode=mode, loss=loss, train_op=train_op)
 
@@ -227,7 +229,7 @@ def main():
         num_epochs=1,
         shuffle=False)
 
-    for NUM_ITERS in range(10):
+    for NUM_ITERS in range(11):
         print("performing the following iter" + str(NUM_ITERS))
         pascal_classifier.train(
             input_fn=train_input_fn,

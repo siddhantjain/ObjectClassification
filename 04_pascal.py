@@ -228,7 +228,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
             output_dir="/tmp/pascal_model_vgg",
             summary_op=tf.summary.merge_all())
         '''
-        
+
         global_step = tf.Variable(0, trainable=False)
         starter_learning_rate = 0.001
         learning_rate = tf.train.exponential_decay(starter_learning_rate, tf.train.get_global_step(),
