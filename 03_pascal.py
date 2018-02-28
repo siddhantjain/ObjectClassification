@@ -10,6 +10,8 @@ import argparse
 import os.path as osp
 from PIL import Image
 from functools import partial
+from tensorflow.core.framework import summary_pb2
+
 
 from eval import compute_map
 #import models
@@ -47,6 +49,14 @@ CLASS_NAMES = [
      'aeroplane'
 ]
 '''
+def summary_var(log_dir, name, val, step):
+    writer = tf.summary.FileWriterCache.get(log_dir)
+    summary_proto = summary_pb2.Summary()
+    value = summary_proto.value.add()
+    value.tag = name
+    value.simple_value = float(val)
+    writer.add_summary(summary_proto, step)
+    writer.flush()
 
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
@@ -402,6 +412,8 @@ def main():
         for cid, cname in enumerate(CLASS_NAMES):
             print('{}: {}'.format(cname, _get_el(AP, cid)))
         mAPEstimates.append(np.mean(AP))
+        log_dir = "/tmp/models/pascal_model_vgg"
+        summary_var(log_dir, "mAP", np.mean(AP), NUM_ITERS*400)
 
 
     #taking a short cut for this question and instead of figuring out tensorboard, just writing mAP values to file,
