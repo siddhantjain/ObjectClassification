@@ -16,7 +16,7 @@ from eval import compute_map
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-
+'''
 CLASS_NAMES = [
      'aeroplane',
      'bicycle',
@@ -39,14 +39,14 @@ CLASS_NAMES = [
      'train',
      'tvmonitor',
 ]
-
-
-
 '''
+
+
+
 CLASS_NAMES = [
      'aeroplane'
 ]
-'''
+
 
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
@@ -256,7 +256,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
 
         for value, name in grad_list:
             if value is not None:
-                tf.summary.histogram("{}-grad".format(name.name), grad_list[value])
+                tf.summary.histogram("{}-grad".format(name.name), value)
 
         return tf.estimator.EstimatorSpec(
             mode=mode, loss=loss, train_op=train_op)
