@@ -16,7 +16,7 @@ from eval import compute_map
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-'''
+
 CLASS_NAMES = [
      'aeroplane',
      'bicycle',
@@ -39,14 +39,14 @@ CLASS_NAMES = [
      'train',
      'tvmonitor',
 ]
+
+
+
 '''
-
-
-
 CLASS_NAMES = [
      'aeroplane'
 ]
-
+'''
 
 def cnn_model_fn(features, labels, mode, num_classes=20):
 

@@ -96,8 +96,8 @@
       <file leaf-file-name="03_pascal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/03_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="372" column="48" lean-forward="true" selection-start-line="372" selection-start-column="48" selection-end-line="372" selection-end-column="48" />
+            <state relative-caret-position="120">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -569,7 +569,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519783500295</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="changing folder to write models">
+      <created>1519784034598</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1519784034598</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -632,7 +639,8 @@
     <MESSAGE value="Adding another iteration to 01_pascal" />
     <MESSAGE value="fixing bug with summary hook" />
     <MESSAGE value="Fixing error with histogram plotting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing error with histogram plotting" />
+    <MESSAGE value="changing folder to write models" />
+    <option name="LAST_COMMIT_MESSAGE" value="changing folder to write models" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1103,8 +1111,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/03_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="372" column="48" lean-forward="true" selection-start-line="372" selection-start-column="48" selection-end-line="372" selection-end-column="48" />
+        <state relative-caret-position="120">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
