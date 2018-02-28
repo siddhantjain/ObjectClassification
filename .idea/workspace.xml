@@ -83,9 +83,9 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SECOND">
-              <first_editor relative-caret-position="2700">
-                <caret line="180" column="843" lean-forward="false" selection-start-line="180" selection-start-column="843" selection-end-line="180" selection-end-column="856" />
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="213">
+                <caret line="220" column="220" lean-forward="false" selection-start-line="220" selection-start-column="188" selection-end-line="220" selection-end-column="220" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -96,8 +96,8 @@
       <file leaf-file-name="03_pascal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/03_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="122">
+              <caret line="363" column="19" lean-forward="true" selection-start-line="363" selection-start-column="19" selection-end-line="363" selection-end-column="19" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -108,8 +108,8 @@
       <file leaf-file-name="04_pascal.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/04_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4993">
-              <caret line="428" column="45" lean-forward="false" selection-start-line="428" selection-start-column="45" selection-end-line="428" selection-end-column="45" />
+            <state relative-caret-position="234">
+              <caret line="225" column="49" lean-forward="true" selection-start-line="225" selection-start-column="49" selection-end-line="225" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -136,7 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>words[1</find>
       <find>words[1]</find>
       <find>log</find>
       <find>1000</find>
@@ -164,8 +163,9 @@
       <find>pascal_model</find>
       <find>/tmp.</find>
       <find>summary</find>
-      <find>summary_hook</find>
       <find>pascal_model_vgg</find>
+      <find>summary_hook</find>
+      <find>leat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -576,7 +576,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519784034598</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fixing unintended check in">
+      <created>1519784260782</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1519784260782</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -640,7 +647,8 @@
     <MESSAGE value="fixing bug with summary hook" />
     <MESSAGE value="Fixing error with histogram plotting" />
     <MESSAGE value="changing folder to write models" />
-    <option name="LAST_COMMIT_MESSAGE" value="changing folder to write models" />
+    <MESSAGE value="fixing unintended check in" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing unintended check in" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1064,23 +1072,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-165">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="2700">
-            <caret line="180" column="843" lean-forward="false" selection-start-line="180" selection-start-column="843" selection-end-line="180" selection-end-column="856" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/01_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-47">
@@ -1103,16 +1094,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/04_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4993">
-          <caret line="428" column="45" lean-forward="false" selection-start-line="428" selection-start-column="45" selection-end-line="428" selection-end-column="45" />
+        <state relative-caret-position="234">
+          <caret line="225" column="49" lean-forward="true" selection-start-line="225" selection-start-column="49" selection-end-line="225" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-165">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="213">
+            <caret line="220" column="220" lean-forward="false" selection-start-line="220" selection-start-column="188" selection-end-line="220" selection-end-column="220" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/03_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="122">
+          <caret line="363" column="19" lean-forward="true" selection-start-line="363" selection-start-column="19" selection-end-line="363" selection-end-column="19" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>

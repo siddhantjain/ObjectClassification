@@ -361,7 +361,7 @@ def main():
     pascal_classifier = tf.estimator.Estimator(
         model_fn=partial(cnn_model_fn,
                          num_classes=train_labels.shape[1]),
-        model_dir="~/models/pascal_model_vgg")
+        model_dir="/models/pascal_model_vgg")
 
     tensors_to_log = {"loss": "loss"}
 
