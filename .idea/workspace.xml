@@ -96,8 +96,8 @@
       <file leaf-file-name="03_pascal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/03_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="363" column="30" lean-forward="false" selection-start-line="363" selection-start-column="30" selection-end-line="363" selection-end-column="30" />
+            <state relative-caret-position="125">
+              <caret line="419" column="0" lean-forward="true" selection-start-line="419" selection-start-column="0" selection-end-line="419" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -590,7 +590,21 @@
       <option name="project" value="LOCAL" />
       <updated>1519835453507</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="changing model location">
+      <created>1519836490259</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1519836490259</updated>
+    </task>
+    <task id="LOCAL-00030" summary="adding mAP as a TF variable">
+      <created>1519837955517</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1519837955517</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -656,7 +670,8 @@
     <MESSAGE value="changing folder to write models" />
     <MESSAGE value="fixing unintended check in" />
     <MESSAGE value="changing model location" />
-    <option name="LAST_COMMIT_MESSAGE" value="changing model location" />
+    <MESSAGE value="adding mAP as a TF variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding mAP as a TF variable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -678,12 +693,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/03_pascal.py</url>
-          <line>184</line>
+          <line>194</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/03_pascal.py</url>
-          <line>260</line>
+          <line>270</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
@@ -1127,8 +1142,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/03_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="363" column="30" lean-forward="false" selection-start-line="363" selection-start-column="30" selection-end-line="363" selection-end-column="30" />
+        <state relative-caret-position="125">
+          <caret line="419" column="0" lean-forward="true" selection-start-line="419" selection-start-column="0" selection-end-line="419" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>

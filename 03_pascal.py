@@ -358,7 +358,9 @@ def _get_el(arr, i):
         return arr
 
 
+
 def main():
+    mapEstimatesFile = open('mapEstimates.txt', 'w')
     BATCH_SIZE = 10
     #NUM_ITERS = 10000
     args = parse_args()
@@ -414,6 +416,8 @@ def main():
         mAPEstimates.append(np.mean(AP))
         log_dir = "/tmp/models/pascal_model_vgg"
         summary_var(log_dir, "mAP", np.mean(AP), NUM_ITERS*400)
+        mapEstimatesFile.write("%s\n" % np.mean(AP))
+
 
 
     #taking a short cut for this question and instead of figuring out tensorboard, just writing mAP values to file,
