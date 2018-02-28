@@ -363,7 +363,7 @@ weights_dict = { 'vgg_16/conv1/conv1_1/biases': 'conv2d/bias',
 
 class PreTrainedHook(tf.train.SessionRunHook):
     def begin(self):
-        print(tf.trainable_variables())
+        #print(tf.trainable_variables())
         tf.contrib.framework.init_from_checkpoint('vgg_16.ckpt',weights_dict)
 
 def main():

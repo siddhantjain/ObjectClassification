@@ -41,6 +41,7 @@ CLASS_NAMES = [
 ]
 
 
+
 '''
 CLASS_NAMES = [
      'aeroplane'
@@ -253,8 +254,9 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
 
         grad_list = optimizer.compute_gradients(loss)
 
-        for index, grad in enumerate(grad_list):
-            tf.summary.histogram("{}-grad".format(grad_list[index][1].name), grad_list[index])
+        for value, name in grad_list:
+            if value is not None:
+                tf.summary.histogram("{}-grad".format(name.name), grad_list[value])
 
         return tf.estimator.EstimatorSpec(
             mode=mode, loss=loss, train_op=train_op)

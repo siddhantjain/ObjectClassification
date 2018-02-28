@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9a70f881-3ad4-4e79-96f9-6be71618a37f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/02_pascal.py" afterPath="$PROJECT_DIR$/02_pascal.py" />
       <change beforePath="$PROJECT_DIR$/03_pascal.py" afterPath="$PROJECT_DIR$/03_pascal.py" />
       <change beforePath="$PROJECT_DIR$/04_pascal.py" afterPath="$PROJECT_DIR$/04_pascal.py" />
     </list>
@@ -31,7 +30,7 @@
       <file leaf-file-name="01_pascal.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/01_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
+            <state relative-caret-position="-47">
               <caret line="212" column="24" lean-forward="false" selection-start-line="212" selection-start-column="19" selection-end-line="212" selection-end-column="24" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -53,7 +52,7 @@
       <file leaf-file-name="02_pascal.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/02_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
+            <state relative-caret-position="-1669">
               <caret line="158" column="20" lean-forward="false" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="20" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -95,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="03_pascal.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="03_pascal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/03_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="259" column="51" lean-forward="false" selection-start-line="259" selection-start-column="51" selection-end-line="259" selection-end-column="51" />
+            <state relative-caret-position="-2846">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -107,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="04_pascal.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="04_pascal.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/04_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="242" column="51" lean-forward="false" selection-start-line="242" selection-start-column="51" selection-end-line="242" selection-end-column="51" />
+            <state relative-caret-position="4993">
+              <caret line="428" column="45" lean-forward="false" selection-start-line="428" selection-start-column="45" selection-end-line="428" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -163,11 +162,11 @@
       <find>summar</find>
       <find>get_</find>
       <find>pascal_</find>
-      <find>/tmp.</find>
       <find>/tmp</find>
       <find>pascal_model</find>
-      <find>summary_hook</find>
+      <find>/tmp.</find>
       <find>summary</find>
+      <find>summary_hook</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -185,13 +184,12 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/01_pascal.py" />
         <option value="$PROJECT_DIR$/02_pascal.py" />
-        <option value="$PROJECT_DIR$/03_pascal.py" />
         <option value="$PROJECT_DIR$/04_pascal.py" />
+        <option value="$PROJECT_DIR$/03_pascal.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="317" />
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="835" />
@@ -551,11 +549,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519771276680</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fixing bug with summary hook">
+      <created>1519773853427</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1519773853427</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="835" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="835" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14930555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -612,7 +617,8 @@
     <MESSAGE value="Making changes to VGG implementation" />
     <MESSAGE value="flattening layer" />
     <MESSAGE value="Adding another iteration to 01_pascal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding another iteration to 01_pascal" />
+    <MESSAGE value="fixing bug with summary hook" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing bug with summary hook" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -634,12 +640,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/03_pascal.py</url>
-          <line>183</line>
+          <line>184</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/03_pascal.py</url>
-          <line>208</line>
+          <line>209</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
@@ -1036,16 +1042,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/01_pascal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="212" column="24" lean-forward="false" selection-start-line="212" selection-start-column="19" selection-end-line="212" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="-165">
@@ -1063,20 +1059,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/02_pascal.py">
+    <entry file="file://$PROJECT_DIR$/01_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="158" column="20" lean-forward="false" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="20" />
+        <state relative-caret-position="-47">
+          <caret line="212" column="24" lean-forward="false" selection-start-line="212" selection-start-column="19" selection-end-line="212" selection-end-column="24" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/03_pascal.py">
+    <entry file="file://$PROJECT_DIR$/02_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="259" column="51" lean-forward="false" selection-start-line="259" selection-start-column="51" selection-end-line="259" selection-end-column="51" />
+        <state relative-caret-position="-1669">
+          <caret line="158" column="20" lean-forward="false" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="20" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -1085,9 +1081,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/04_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="242" column="51" lean-forward="false" selection-start-line="242" selection-start-column="51" selection-end-line="242" selection-end-column="51" />
+        <state relative-caret-position="4993">
+          <caret line="428" column="45" lean-forward="false" selection-start-line="428" selection-start-column="45" selection-end-line="428" selection-end-column="45" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/03_pascal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2846">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
