@@ -88,9 +88,10 @@ def mixup(x,labels,alpha,BATCH_SIZE=10):
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
     if mode == tf.estimator.ModeKeys.PREDICT:
-        features["x"] = features["x"]
+        features["x"] = tf.image.resize_image_with_crop_or_pad(features["x"], 224, 224)
     else:
         alpha = 0.4
+        features["x"] = tf.image.resize_image_with_crop_or_pad(features["x"], 224, 224)
         features["x"],labels = mixup(features["x"],labels,alpha)
 
 
