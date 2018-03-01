@@ -12,10 +12,21 @@ from PIL import Image
 from functools import partial
 
 from eval import compute_map
+from tensorflow.core.framework import summary_pb2
 #import models
 
+
+def summary_var(log_dir, name, val, step):
+    writer = tf.summary.FileWriterCache.get(log_dir)
+    summary_proto = summary_pb2.Summary()
+    value = summary_proto.value.add()
+    value.tag = name
+    value.simple_value = float(val)
+    writer.add_summary(summary_proto, step)
+    writer.flush()
+
 tf.logging.set_verbosity(tf.logging.INFO)
-'''
+
 CLASS_NAMES = [
      'aeroplane',
      'bicycle',
@@ -38,13 +49,14 @@ CLASS_NAMES = [
      'train',
      'tvmonitor',
 ]
-'''
 
+'''
 
 CLASS_NAMES = [
      'aeroplane'
 ]
 
+'''
 
 #Note: this code is inspired from the code referred in the codebase maintained by the authors of the mixup paper
 #Exact link: https://github.com/ppwwyyxx/tensorpack/blob/master/examples/ResNet/cifar10-preact18-mixup.py
@@ -289,6 +301,7 @@ def _get_el(arr, i):
 
 
 def main():
+    mapEstimatesFile = open('mapEstimates.txt', 'w')
     BATCH_SIZE = 10
     #NUM_ITERS = 10000
     args = parse_args()
@@ -301,7 +314,7 @@ def main():
     pascal_classifier = tf.estimator.Estimator(
         model_fn=partial(cnn_model_fn,
                          num_classes=train_labels.shape[1]),
-        model_dir="/tmp/pascal_model_alexnet_alexnet")
+        model_dir="/tmp/pascal_model_alexnet_mixup")
 
     tensors_to_log = {"loss": "loss"}
 
@@ -342,6 +355,9 @@ def main():
         for cid, cname in enumerate(CLASS_NAMES):
             print('{}: {}'.format(cname, _get_el(AP, cid)))
         mAPEstimates.append(np.mean(AP))
+        log_dir = "/tmp/pascal_model_alexnet_mixup"
+        summary_var(log_dir, "mAP", np.mean(AP), NUM_ITERS * 400)
+        mapEstimatesFile.write("%s\n" % np.mean(AP))
 
 
     #taking a short cut for this question and instead of figuring out tensorboard, just writing mAP values to file,
