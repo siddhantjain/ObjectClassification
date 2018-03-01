@@ -90,7 +90,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
     if mode == tf.estimator.ModeKeys.PREDICT:
         features["x"] = features["x"]
     else:
-        alpha = 0.1
+        alpha = 0.4
         features["x"],labels = mixup(features["x"],labels,alpha)
 
 

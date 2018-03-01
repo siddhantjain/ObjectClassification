@@ -29,8 +29,8 @@
       <file leaf-file-name="06_pascal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/06_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="91" column="9" lean-forward="false" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+            <state relative-caret-position="277">
+              <caret line="92" column="19" lean-forward="false" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -642,7 +642,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519874715490</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="removing old data augmentation from mixup">
+      <created>1519876781234</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1519876781234</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -692,7 +699,8 @@
     <MESSAGE value="adding mAP as a TF variable" />
     <MESSAGE value="implementing mixup" />
     <MESSAGE value="changing mixup alpha" />
-    <option name="LAST_COMMIT_MESSAGE" value="changing mixup alpha" />
+    <MESSAGE value="removing old data augmentation from mixup" />
+    <option name="LAST_COMMIT_MESSAGE" value="removing old data augmentation from mixup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1196,8 +1204,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/06_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="91" column="9" lean-forward="false" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+        <state relative-caret-position="277">
+          <caret line="92" column="19" lean-forward="false" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
