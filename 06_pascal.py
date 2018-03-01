@@ -27,7 +27,7 @@ def summary_var(log_dir, name, val, step):
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-'''
+
 CLASS_NAMES = [
      'aeroplane',
      'bicycle',
@@ -58,7 +58,7 @@ CLASS_NAMES = [
 CLASS_NAMES = [
      'aeroplane'
 ]
-
+'''
 
 
 #Note: this code is inspired from the code referred in the codebase maintained by the authors of the mixup paper
