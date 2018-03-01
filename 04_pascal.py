@@ -371,10 +371,21 @@ def main():
     #NUM_ITERS = 10000
     args = parse_args()
     # Load training and eval data
-    train_data, train_labels, train_weights = load_pascal(
-        args.data_dir, split='trainval')
-    eval_data, eval_labels, eval_weights = load_pascal(
-        args.data_dir, split='test')
+    imagePath = args.data_dir + '/trainval_images.npy'
+    flag = osp.exists(imagePath)
+
+    if flag:
+        train_data = np.load(args.data_dir + '/trainval_images.npy')
+        train_labels = np.load(args.data_dir + '/trainval_labels.npy')
+        train_weights = np.load(args.data_dir + '/trainval_weights.npy')
+        eval_data = np.load(args.data_dir + '/test_images.npy')
+        eval_labels = np.load(args.data_dir + '/test_labels.npy')
+        eval_weights = np.load(args.data_dir + '/test_weights.npy')
+    else:
+        train_data, train_labels, train_weights = load_pascal(
+            args.data_dir, split='trainval')
+        eval_data, eval_labels, eval_weights = load_pascal(
+            args.data_dir, split='test')
 
     pascal_classifier = tf.estimator.Estimator(
         model_fn=partial(cnn_model_fn,
