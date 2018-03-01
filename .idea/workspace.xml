@@ -29,8 +29,8 @@
       <file leaf-file-name="06_pascal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/06_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="289" column="0" lean-forward="true" selection-start-line="289" selection-start-column="0" selection-end-line="289" selection-end-column="0" />
+            <state relative-caret-position="-2234">
+              <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -64,7 +64,7 @@
         <entry file="file://$USER_HOME$/tensorflow/lib/python3.6/site-packages/tensorflow/python/estimator/estimator.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
-              <caret line="723" column="31" lean-forward="true" selection-start-line="723" selection-start-column="31" selection-end-line="723" selection-end-column="31" />
+              <caret line="723" column="31" lean-forward="false" selection-start-line="723" selection-start-column="31" selection-end-line="723" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -86,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/02_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
-              <caret line="54" column="96" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="54" selection-end-column="96" />
+              <caret line="54" column="96" lean-forward="false" selection-start-line="53" selection-start-column="7" selection-end-line="54" selection-end-column="96" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -99,7 +99,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="71">
-                <caret line="168" column="142" lean-forward="true" selection-start-line="168" selection-start-column="142" selection-end-line="168" selection-end-column="173" />
+                <caret line="168" column="142" lean-forward="false" selection-start-line="168" selection-start-column="142" selection-end-line="168" selection-end-column="173" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -111,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/03_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1434">
-              <caret line="251" column="101" lean-forward="true" selection-start-line="251" selection-start-column="101" selection-end-line="251" selection-end-column="101" />
+              <caret line="251" column="101" lean-forward="false" selection-start-line="251" selection-start-column="101" selection-end-line="251" selection-end-column="101" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -123,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/04_pascal.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1067">
-              <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+              <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -140,10 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>load_pascal</find>
-      <find>str</find>
-      <find>load_pasl</find>
-      <find>num_ITERS</find>
       <find>logging_hook</find>
       <find>estimatorSpec</find>
       <find>pool3</find>
@@ -170,6 +166,10 @@
       <find>alpha</find>
       <find>mapEs</find>
       <find>model</find>
+      <find>os.path</find>
+      <find>osp</find>
+      <find>train</find>
+      <find>'train</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -670,7 +670,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519880672605</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="just trying normal everything without mix-up">
+      <created>1519881584698</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1519881584698</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -680,7 +687,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14930555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30144167" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30144167" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896462" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -723,7 +730,8 @@
     <MESSAGE value="removing old data augmentation from mixup" />
     <MESSAGE value="fixing bug with cropping" />
     <MESSAGE value="mixing up weights as well!" />
-    <option name="LAST_COMMIT_MESSAGE" value="mixing up weights as well!" />
+    <MESSAGE value="just trying normal everything without mix-up" />
+    <option name="LAST_COMMIT_MESSAGE" value="just trying normal everything without mix-up" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -755,11 +763,16 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/06_pascal.py</url>
-          <line>66</line>
+          <line>67</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/06_pascal.py</url>
+          <line>326</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="40" />
+      <option name="time" value="41" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1165,7 +1178,7 @@
     <entry file="file://$USER_HOME$/tensorflow/lib/python3.6/site-packages/tensorflow/python/estimator/estimator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
-          <caret line="723" column="31" lean-forward="true" selection-start-line="723" selection-start-column="31" selection-end-line="723" selection-end-column="31" />
+          <caret line="723" column="31" lean-forward="false" selection-start-line="723" selection-start-column="31" selection-end-line="723" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1190,7 +1203,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="71">
-            <caret line="168" column="142" lean-forward="true" selection-start-line="168" selection-start-column="142" selection-end-line="168" selection-end-column="173" />
+            <caret line="168" column="142" lean-forward="false" selection-start-line="168" selection-start-column="142" selection-end-line="168" selection-end-column="173" />
             <folding />
           </first_editor>
           <second_editor />
@@ -1200,7 +1213,7 @@
     <entry file="file://$PROJECT_DIR$/04_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1067">
-          <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1208,7 +1221,7 @@
     <entry file="file://$PROJECT_DIR$/03_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1434">
-          <caret line="251" column="101" lean-forward="true" selection-start-line="251" selection-start-column="101" selection-end-line="251" selection-end-column="101" />
+          <caret line="251" column="101" lean-forward="false" selection-start-line="251" selection-start-column="101" selection-end-line="251" selection-end-column="101" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -1218,7 +1231,7 @@
     <entry file="file://$PROJECT_DIR$/02_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="54" column="96" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="54" selection-end-column="96" />
+          <caret line="54" column="96" lean-forward="false" selection-start-line="53" selection-start-column="7" selection-end-line="54" selection-end-column="96" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -1227,8 +1240,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/06_pascal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="289" column="0" lean-forward="true" selection-start-line="289" selection-start-column="0" selection-end-line="289" selection-end-column="0" />
+        <state relative-caret-position="-2234">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>

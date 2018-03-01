@@ -27,7 +27,7 @@ def summary_var(log_dir, name, val, step):
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-
+'''
 CLASS_NAMES = [
      'aeroplane',
      'bicycle',
@@ -54,20 +54,21 @@ CLASS_NAMES = [
 
 
 '''
+
 CLASS_NAMES = [
      'aeroplane'
 ]
-'''
+
 
 
 #Note: this code is inspired from the code referred in the codebase maintained by the authors of the mixup paper
 #Exact link: https://github.com/ppwwyyxx/tensorpack/blob/master/examples/ResNet/cifar10-preact18-mixup.py
 
 def mixup(x,labels,w,alpha,BATCH_SIZE=10):
-    weight = np.random.beta(alpha, alpha, BATCH_SIZE)
-    x_weight = weight.reshape(BATCH_SIZE, 1, 1, 1)
-    y_weight = weight.reshape(BATCH_SIZE, 1)
-    w_weight = weight.reshape(BATCH_SIZE, 1)
+    weight = np.random.beta(alpha, alpha, 1)
+    #x_weight = weight.reshape(BATCH_SIZE, 1, 1, 1)
+    #y_weight = weight.reshape(BATCH_SIZE, 1)
+    #w_weight = weight.reshape(BATCH_SIZE, 1)
     index = np.random.permutation(BATCH_SIZE)
 
     x2 = tf.gather(x,index)
@@ -86,10 +87,10 @@ def mixup(x,labels,w,alpha,BATCH_SIZE=10):
         i = i+1
     '''
 
-    x = x1 * x_weight + x2 * (1 - x_weight)
+    x = x1 * weight + x2 * (1 - weight)
     # y1, y2 = labels, labels[index]
-    y = y1 * y_weight + y2 * (1 - y_weight)
-    w = w1 * w_weight + w2 * (1 - w_weight)
+    y = y1 * weight + y2 * (1 - weight)
+    w = w1 * weight + w2 * (1 - weight)
     return [x,y,w]
 
 def cnn_model_fn(features, labels, mode, num_classes=20):
@@ -288,6 +289,9 @@ def load_pascal(data_dir, split='train'):
                     weights[i, labelNumber] = 0
                 i=i+1
 
+    np.save(data_dir + "/" + split + '_images', images)
+    np.save(data_dir + "/" + split + '_labels', labels)
+    np.save(data_dir + "/" + split + '_weights', weights)
     return images,labels, weights
 
 
@@ -317,10 +321,27 @@ def main():
     #NUM_ITERS = 10000
     args = parse_args()
     # Load training and eval data
-    train_data, train_labels, train_weights = load_pascal(
-        args.data_dir, split='trainval')
-    eval_data, eval_labels, eval_weights = load_pascal(
-        args.data_dir, split='test')
+
+
+    imagePath = args.data_dir + '/trainval_images.npy'
+    flag = osp.exists(imagePath)
+
+    if flag:
+        train_data = np.load(args.data_dir + '/trainval_images.npy')
+        train_labels = np.load(args.data_dir + '/trainval_labels.npy')
+        train_weights = np.load(args.data_dir + '/trainval_weights.npy')
+        eval_data = np.load(args.data_dir + '/test_images.npy')
+        eval_labels = np.load(args.data_dir+ '/test_labels.npy')
+        eval_weights = np.load(args.data_dir+'/test_weights.npy')
+    else:
+        train_data, train_labels, train_weights = load_pascal(
+            args.data_dir, split='trainval')
+        eval_data, eval_labels, eval_weights = load_pascal(
+            args.data_dir, split='test')
+
+
+
+
 
     pascal_classifier = tf.estimator.Estimator(
         model_fn=partial(cnn_model_fn,
