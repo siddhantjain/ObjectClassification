@@ -93,7 +93,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         augmentedData = tf.map_fn(lambda img: tf.image.random_flip_left_right(img), features["x"])
         augmentedData = tf.map_fn(lambda img: tf.random_crop(img, [224, 224, 3]), augmentedData)
         features["x"] = augmentedData
-        alpha = 0.4
+        alpha = 0.1
         features["x"],labels = mixup(features["x"],labels,alpha)
 
 
@@ -213,6 +213,9 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         train_op = optimizer.minimize(
             loss=loss,
             global_step=tf.train.get_global_step())
+
+        tf.summary.image(name="training_images", tensor=input_layer, max_outputs=10)
+
         return tf.estimator.EstimatorSpec(
             mode=mode, loss=loss, train_op=train_op)
 
