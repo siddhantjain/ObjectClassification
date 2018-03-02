@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9a70f881-3ad4-4e79-96f9-6be71618a37f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/Submission/05_pascal_alexnet.py" afterPath="$PROJECT_DIR$/Submission/05_pascal_alexnet.py" />
+      <change beforePath="$PROJECT_DIR$/Submission/05_pascal_alexnet.py" afterPath="$PROJECT_DIR$/05_pascal_alexnet.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,7 +59,7 @@
         </entry>
       </file>
       <file leaf-file-name="05_pascal_alexnet.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Submission/05_pascal_alexnet.py">
+        <entry file="file://$PROJECT_DIR$/05_pascal_alexnet.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1238">
               <caret line="153" column="70" lean-forward="false" selection-start-line="153" selection-start-column="70" selection-end-line="153" selection-end-column="70" />
@@ -246,11 +245,6 @@
               <item name="hw1" type="b2602c69:ProjectViewProjectNode" />
               <item name="hw1" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="hw1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hw1" type="462c0819:PsiDirectoryNode" />
-              <item name="Submission" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -265,12 +259,12 @@
     <property name="SearchEverywhereHistoryKey" value="224&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Submission" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -722,14 +716,20 @@
       <option name="project" value="LOCAL" />
       <updated>1519962574162</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="adding code to read images from files directly">
+      <created>1519968080391</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1519968080392</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="835" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14930555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14930555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30144167" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1344,7 +1344,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Submission/05_pascal_alexnet.py">
+    <entry file="file://$PROJECT_DIR$/05_pascal_alexnet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1238">
           <caret line="153" column="70" lean-forward="false" selection-start-line="153" selection-start-column="70" selection-end-line="153" selection-end-column="70" />
