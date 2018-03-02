@@ -61,38 +61,6 @@ CLASS_NAMES = [
 '''
 
 
-#Note: this code is inspired from the code referred in the codebase maintained by the authors of the mixup paper
-#Exact link: https://github.com/ppwwyyxx/tensorpack/blob/master/examples/ResNet/cifar10-preact18-mixup.py
-
-def mixup(x,labels,w,alpha,BATCH_SIZE=10):
-    weight = np.random.beta(alpha, alpha, 1)
-    #x_weight = weight.reshape(BATCH_SIZE, 1, 1, 1)
-    #y_weight = weight.reshape(BATCH_SIZE, 1)
-    #w_weight = weight.reshape(BATCH_SIZE, 1)
-    index = np.random.permutation(BATCH_SIZE)
-
-    x2 = tf.gather(x,index)
-    x1 =x
-
-    y2 = tf.gather(labels,index)
-    y1 = labels
-
-    w2 = tf.gather(w,index)
-    w1 = w
-    '''
-    i=0
-    for each in index:
-        x2
-        tf.gather(x2,i) = tf.gather(x1,each)
-        i = i+1
-    '''
-
-    x = x1 * weight + x2 * (1 - weight)
-    # y1, y2 = labels, labels[index]
-    y = y1 * weight + y2 * (1 - weight)
-    w = w1 * weight + w2 * (1 - weight)
-    return [x,y,w]
-
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
     if mode == tf.estimator.ModeKeys.PREDICT:
@@ -101,8 +69,8 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         alpha = 0.2
         augmentedData = tf.map_fn(lambda img: tf.image.random_flip_left_right(img), features["x"])
         augmentedData = tf.map_fn(lambda img: tf.random_crop(img, [224, 224, 3]), augmentedData)
-        features["x"],labels,features["w"] = mixup(augmentedData,labels,features["w"],alpha)
-       # features["x"] = augmentedData
+       # features["x"],labels,features["w"] = mixup(augmentedData,labels,features["w"],alpha)
+        features["x"] = augmentedData
 
 
 
