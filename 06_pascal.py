@@ -53,22 +53,23 @@ CLASS_NAMES = [
 
 
 
-'''
 
+'''
 CLASS_NAMES = [
      'aeroplane'
 ]
 '''
 
 
+
 #Note: this code is inspired from the code referred in the codebase maintained by the authors of the mixup paper
 #Exact link: https://github.com/ppwwyyxx/tensorpack/blob/master/examples/ResNet/cifar10-preact18-mixup.py
 
-def mixup(x,labels,w,alpha,BATCH_SIZE=10):
-    weight = np.random.beta(alpha, alpha, 1)
-    #x_weight = weight.reshape(BATCH_SIZE, 1, 1, 1)
-    #y_weight = weight.reshape(BATCH_SIZE, 1)
-    #w_weight = weight.reshape(BATCH_SIZE, 1)
+def mixup_old(x,labels,w,alpha,BATCH_SIZE=10):
+    weight = np.random.beta(alpha, alpha, BATCH_SIZE)
+    x_weight = weight.reshape(BATCH_SIZE, 1, 1, 1)
+    y_weight = weight.reshape(BATCH_SIZE, 1)
+    w_weight = weight.reshape(BATCH_SIZE, 1)
     index = np.random.permutation(BATCH_SIZE)
 
     x2 = tf.gather(x,index)
@@ -87,31 +88,37 @@ def mixup(x,labels,w,alpha,BATCH_SIZE=10):
         i = i+1
     '''
 
-    x = x1 * weight + x2 * (1 - weight)
+    x = x1 * x_weight + x2 * (1 - x_weight)
     # y1, y2 = labels, labels[index]
-    y = y1 * weight + y2 * (1 - weight)
-    w = w1 * weight + w2 * (1 - weight)
+    y = y1 * y_weight + y2 * (1 - y_weight)
+    w = w1 * w_weight + w2 * (1 - w_weight)
     return [x,y,w]
+
+
 
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
     if mode == tf.estimator.ModeKeys.PREDICT:
         features["x"] = tf.image.resize_image_with_crop_or_pad(features["x"], 224, 224)
     else:
-        alpha = 0.2
         augmentedData = tf.map_fn(lambda img: tf.image.random_flip_left_right(img), features["x"])
         augmentedData = tf.map_fn(lambda img: tf.random_crop(img, [224, 224, 3]), augmentedData)
-        features["x"],labels,features["w"] = mixup(augmentedData,labels,features["w"],alpha)
-       # features["x"] = augmentedData
-
-
-
-
-    # features_flipped = tf.image.random_flip_left_right(features["x"])
-   # features["x"].append(features_flipped)
-
+        features["x"] = augmentedData
 
     input_layer = tf.reshape(features["x"], [-1, 224, 224, 3])
+
+    # Kashyap Chitta helped me write the following few lines of code for mix-up
+
+    if mode == tf.estimator.ModeKeys.TRAIN:
+        bSize = 10
+        alpha = 0.2
+        beta_distr = tf.distributions.Beta(alpha, alpha)
+        lamda = tf.expand_dims(beta_distr.sample(bSize), -1)
+        lamda_allDims = tf.expand_dims(tf.expand_dims(lamda,-1),-1)
+
+
+        input_layer= lamda_allDims*input_layer + (1-lamda_allDims)*input_layer
+        labels = lamda*tf.cast(labels,tf.float32) + (1-lamda)*tf.cast(labels,tf.float32)
 
     # Convolutional Layer #1
     conv1 = tf.layers.conv2d(
