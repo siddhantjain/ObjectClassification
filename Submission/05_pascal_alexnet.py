@@ -69,15 +69,7 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         alpha = 0.2
         augmentedData = tf.map_fn(lambda img: tf.image.random_flip_left_right(img), features["x"])
         augmentedData = tf.map_fn(lambda img: tf.random_crop(img, [224, 224, 3]), augmentedData)
-       # features["x"],labels,features["w"] = mixup(augmentedData,labels,features["w"],alpha)
         features["x"] = augmentedData
-
-
-
-
-    # features_flipped = tf.image.random_flip_left_right(features["x"])
-   # features["x"].append(features_flipped)
-
 
     input_layer = tf.reshape(features["x"], [-1, 224, 224, 3])
 
@@ -159,7 +151,9 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         "classes": tf.argmax(input=logits, axis=1),
         # Add `softmax_tensor` to the graph. It is used for PREDICT and by the
         # `logging_hook`.
-        "probabilities": tf.nn.sigmoid(logits, name="softmax_tensor")
+        "probabilities": tf.nn.sigmoid(logits, name="softmax_tensor"),
+        "pool5": pool3_flat,
+        "fc7": dense2
     }
 
     if mode == tf.estimator.ModeKeys.PREDICT:
@@ -329,11 +323,13 @@ def main():
         num_epochs=None,
         shuffle=True)
     mAPEstimates = []
+    conv1FilterKernel = []
     for NUM_ITERS in range(100):
         pascal_classifier.train(
             input_fn=train_input_fn,
             steps=400,
             hooks=[logging_hook])
+        conv1FilterKernel.append(pascal_classifier.get_variable_value(('conv2d/kernel')))
         # Evaluate the model and print results
         eval_input_fn = tf.estimator.inputs.numpy_input_fn(
             x={"x": eval_data, "w": eval_weights},
@@ -341,7 +337,12 @@ def main():
             num_epochs=1,
             shuffle=False)
         pred = list(pascal_classifier.predict(input_fn=eval_input_fn))
+        fc7Features = np.stack([p['fc7'] for p in pred])
+        pool5Features = np.stack([p['pool5'] for p in pred])
+
+
         pred = np.stack([p['probabilities'] for p in pred])
+
         rand_AP = compute_map(
             eval_labels, np.random.random(eval_labels.shape),
             eval_weights, average=None)
@@ -366,6 +367,15 @@ def main():
     mapEstimatesFile = open('mapEstimates.txt', 'w')
     for item in mAPEstimates:
         mapEstimatesFile.write("%s\n" % item)
+
+    conv1FilterKernelFile = open('conv1Filters.npz','w')
+    np.save(conv1FilterKernelFile,conv1FilterKernel)
+
+    fc7FeaturesFile = open('fc7Features.npz', 'w')
+    np.save(fc7FeaturesFile, fc7Features)
+
+    pool5FeaturesFile = open('pool5Features.npz', 'w')
+    np.save(pool5FeaturesFile, pool5Features)
 
 
 if __name__ == "__main__":

@@ -220,6 +220,9 @@ Show the per-class performance of your scratch (alexnet) and pre-trained (VGG) m
 ## Task 6 (Extra Credit): Improve the classification performance (20 points)
 Many techniques have been proposed in the literature to improve classification performance for deep networks. In this section, we try to use a recently proposed technique called [*mixup*](https://arxiv.org/abs/1710.09412). The main idea is to augment the training set with linear combinations of images and labels. Read through the paper and modify your model to implement mixup. Report your performance, along with training/test curves, and comparison with baseline in the report.
 
+Accuracy: 33.39%
+Curves to be added
+
 
 ## Acknowledgements
 Parts of the starter code are taken from official TensorFlow tutorials. Many thanks to the original authors!
