@@ -17,7 +17,7 @@ def visWeight(dataPoint,fileName):
     minWeight = np.min(dataPoint)
 
     numRows = 8
-    numCols = 12
+    numCols = 8
 
     fig, axes = plt.subplots(numRows, numCols)
 
@@ -38,15 +38,16 @@ def visWeight(dataPoint,fileName):
     plt.savefig(fileName)
 
 def visWeights():
-    weights = np.load('conv1Filters.npz')
+    #weights = np.load('conv1Filters.npz')
+    weights = np.load('conv1Filters_vgg.npz')
 
     datapoint1 = weights[1,:,:,:,:]
-    datapoint2 = weights[100,:,:,:]
-    datapoint3 = weights[399,:,:,:]
+    datapoint2 = weights[5,:,:,:]
+    datapoint3 = weights[9,:,:,:]
 
-    visWeight(datapoint1,'datapoint1.png')
-    visWeight(datapoint2, 'datapoint2.png')
-    visWeight(datapoint3, 'datapoint3.png')
+    visWeight(datapoint1,'datapoint1_vgg.png')
+    visWeight(datapoint2, 'datapoint2_vgg.png')
+    visWeight(datapoint3, 'datapoint3_vgg.png')
 
 
 def main():

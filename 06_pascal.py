@@ -95,6 +95,8 @@ def mixup_old(x,labels,w,alpha,BATCH_SIZE=10):
     return [x,y,w]
 
 
+def circular_shift(values):
+    return tf.concat([values[-1:, ...], values[:-1, ...]], 0)
 
 def cnn_model_fn(features, labels, mode, num_classes=20):
 
@@ -117,8 +119,8 @@ def cnn_model_fn(features, labels, mode, num_classes=20):
         lamda_allDims = tf.expand_dims(tf.expand_dims(lamda,-1),-1)
 
 
-        input_layer= lamda_allDims*input_layer + (1-lamda_allDims)*input_layer
-        labels = lamda*tf.cast(labels,tf.float32) + (1-lamda)*tf.cast(labels,tf.float32)
+        input_layer= lamda_allDims*input_layer + (1-lamda_allDims)*circular_shift(input_layer)
+        labels = lamda*tf.cast(labels,tf.float32) + (1-lamda)*circular_shift(tf.cast(labels,tf.float32))
 
     # Convolutional Layer #1
     conv1 = tf.layers.conv2d(

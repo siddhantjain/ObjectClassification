@@ -217,6 +217,30 @@ We can also visualize how the feature representations specialize for different c
 ### Are some classes harder?
 Show the per-class performance of your scratch (alexnet) and pre-trained (VGG) models. Try to explain, by observing examples from the dataset, why some classes are harder or easier than other (consider the easiest and hardest class). Do some classes see large gains due to pre-training? Can you explain why that might happen?
 
+Pre Trained VGG
+Obtained 0.836233642454 mAP
+per class:
+aeroplane: 0.972253176146
+bicycle: 0.933311263613
+bird: 0.923253337078
+boat: 0.920642873017
+bottle: 0.512258031214
+bus: 0.829382570276
+car: 0.918612774573
+cat: 0.910370896719
+chair: 0.631400229107
+cow: 0.750661502406
+diningtable: 0.75590952884
+dog: 0.893225223927
+horse: 0.910872827871
+motorbike: 0.898511084271
+person: 0.960370767462
+pottedplant: 0.670164181204
+sheep: 0.82168576725
+sofa: 0.774712235112
+train: 0.948751213188
+tvmonitor: 0.788323365812
+
 ## Task 6 (Extra Credit): Improve the classification performance (20 points)
 Many techniques have been proposed in the literature to improve classification performance for deep networks. In this section, we try to use a recently proposed technique called [*mixup*](https://arxiv.org/abs/1710.09412). The main idea is to augment the training set with linear combinations of images and labels. Read through the paper and modify your model to implement mixup. Report your performance, along with training/test curves, and comparison with baseline in the report.
 
